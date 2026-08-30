@@ -59,18 +59,18 @@ void paraf_spread_first_n(unsigned long *primes, unsigned *exps, unsigned first,
 	}
 }
 
-int paraf_is_power_of_two(long x) {
+int paraf_is_power_of_two(uint64_t x) {
 	return x && ( !( x & ( x - 1 ) ) );
 }
 
 uint64_t paraf_next_pow2_64(uint64_t n) {
-    if (n == 0) return 1;
-    n--;
-    n |= n >> 1;
-    n |= n >> 2;
-    n |= n >> 4;
-    n |= n >> 8;
-    n |= n >> 16;
-    n |= n >> 32;
-    return n + 1;
+	if (n <= 1) {
+		return 1;
+	}
+
+	if (n > 0x8000000000000000ULL) {
+		return 0;
+	}
+
+	return 1ULL << (64 - __builtin_clzll(n - 1));
 }

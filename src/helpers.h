@@ -15,7 +15,7 @@ void paraf_permutate(unsigned *primes, unsigned *exps, unsigned n);
 
 void paraf_spread_first_n(unsigned long *primes, unsigned *exps, unsigned first, unsigned n);
 
-int paraf_is_power_of_two(long x);
+int paraf_is_power_of_two(uint64_t x);
 
 uint64_t paraf_next_pow2_64(uint64_t);
 
