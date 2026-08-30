@@ -39,10 +39,10 @@ void paraf_mark_non_primes(uint8_t *sieve, unsigned long max) {
 	unsigned long i,p;
 	
 	for(p = 3; p * p <= max; p+=2) {
-		if(getBit( sieve, p/2 - 1)) {
-			for(i = p * p; i <= max; i += p)
-				if(i & 1UL) /* if > 2 only odd numbers can be prime */
-					unsetBit( sieve, i/2 - 1);
+		if(getBit(sieve, p/2 - 1)) {
+			/* skip even numbers */
+			for(i = p * p; i <= max; i += 2 * p)
+				unsetBit(sieve, i/2 - 1);
 		}
 	}
 }
